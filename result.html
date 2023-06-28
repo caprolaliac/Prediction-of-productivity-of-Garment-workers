@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Garment Productivity Prediction - Result</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='result.css') }}">
+</head>
+<body>
+    <div class="toggle-container">
+        <input type="checkbox" class="toggle-checkbox" id="dark-mode-toggle">
+        <label class="toggle-label" for="dark-mode-toggle"></label>
+    </div>
+
+    <div class="result-container">
+        <div class="result-box">
+            <h3>Predicted Productivity:</h3>
+            <p class="result-value">{{ prediction }}</p>
+        </div>
+    </div>
+
+    <script>
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        // Check the saved user preference for dark mode
+        const darkModePreferred = localStorage.getItem('darkMode');
+
+        // Set the initial state based on the user preference
+        if (darkModePreferred === 'true') {
+            darkModeToggle.checked = true;
+            body.classList.add('dark-mode');
+        }
+
+        // Toggle dark mode when the checkbox is clicked
+        darkModeToggle.addEventListener('change', () => {
+            body.classList.toggle('dark-mode');
+
+            // Save the user preference for dark mode
+            localStorage.setItem('darkMode', darkModeToggle.checked);
+        });
+    </script>
+</body>
+</html>
